@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>rest-auth-client</groupId>
+  <artifactId>oauth</artifactId>
+  <version>1.0</version>
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/com.google.collections/google-collections -->
+	<dependency>
+	    <groupId>com.google.collections</groupId>
+	    <artifactId>google-collections</artifactId>
+	    <version>1.0</version>
+	</dependency>
+    <dependency>
+        <groupId>net.oauth.core</groupId>
+        <artifactId>oauth</artifactId>
+        <version>20090617</version>
+    </dependency>
+    <dependency>
+        <groupId>net.oauth.core</groupId>
+        <artifactId>oauth-httpclient4</artifactId>
+        <version>20090617</version>
+    </dependency>
+  </dependencies>
+</project>
