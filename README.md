@@ -19,7 +19,13 @@ Write down the pass phrase somewhere, you will need it when creating a public ke
 <pre><code>openssl pkcs8 -topk8 -nocrypt -in dashboard_privkey.pem -out dashboard_privkey_pcks8.pem
 </code></pre>
 
-4. Obtain a request token from JIRA
+4. Use public/private keys
+
+    Copy the public key into JIRA application links.
+    
+    Copy the private key to replace CONSUMER_PRIVATE_KEY in the following steps in Java code.
+
+5. Obtain a request token from JIRA
     
     Check out this repository, import into your favouriate IDE. Find the Class JIRAOAuthClient, replace the values of CALLBACK_URI, CONSUMER_KEY and CONSUMER_PRIVATE_KEY. CONSUMER_KEY refers to the one you set up in JIRA's application links. Pay attention on the format of the CONSUMER_PRIVATE_KEY, which doesn't contain header or return(\n) mark.
 
@@ -32,13 +38,13 @@ Write down the pass phrase somewhere, you will need it when creating a public ke
     Token secret is rx4T2R3ax7an3H0vJLq9XB9DOP3aiNMl
     Retrieved request token. go to http://localhost:8090/jira/plugins/servlet/oauth/authorize?oauth_token=W9QuE8hba6laXm2RcPGANVusKHnXUJcx
 
-5. Ask the user to authorize this request token
+6. Ask the user to authorize this request token
 
     Go to the URL in system out and login into JIRA and approve the access. 
     Afterwards JIRA will say that you have successfully authorised the access. 
     It mentions a verification code which we need for the next step.
     
-6. Swap the request token for an access token
+7. Swap the request token for an access token
 
     Run as application with args: 
     <pre><code>accessToken JIRA_BASE_URL REQUEST_TOKEN TOKEN_SECRET VERIFIER</code></pre>
@@ -49,7 +55,7 @@ Write down the pass phrase somewhere, you will need it when creating a public ke
     
     This access token will allow you to make authenticated requests to JIRA.
     
-7. Now you can request JIRA with access token
+8. Now you can request JIRA with access token
 
     Run as application with args: 
     <pre><code>request ACCESS_TOKEN JIRA_REST_URL</code></pre>
