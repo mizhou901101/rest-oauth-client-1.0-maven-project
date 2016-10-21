@@ -1,5 +1,6 @@
 # rest-oauth-client-1.0-maven-project
-Atlassian-Java-OAuth-client Maven project means to create OAuth token of JIRA for accessing JIRA's RESTful service.
+Atlassian-Java-OAuth-client Maven project means to create OAuth token of JIRA/Confluence for accessing JIRA/Confluence's RESTful service.
+(The article below will use "JIRA" to represent both JIRA and Confluence systems. But the project has been validated to work with Confluence systems as well.)
 
 # Two major things to prepare
 1. Generating Public/Private key pair (SSL/TLS)
