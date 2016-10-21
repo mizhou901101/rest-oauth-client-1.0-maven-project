@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 /**
  * @since v1.0
+ * 
+ * Tool: VM Arguments -Djavax.net.debug=ssl:handshake 
+ * would print SSL log to trace exception
  */
 public class JIRAOAuthClient
 {
@@ -90,6 +93,12 @@ public class JIRAOAuthClient
      */
     public static void main(String[] args)
     {
+    	/* when your server's certificate is not from a good CA (self-signed certificate), JVM disconnects immediately.
+    	 *  Then you will need Java keystore path like below
+    	 *  The command to create keystore: keytool -import -alias root -file cacert.pem -keystore root.jks
+    	 */
+//    	System.setProperty("javax.net.ssl.trustStore", "root.jks");
+    	
         ArrayList<String> arguments = Lists.newArrayList(args);
         if (arguments.isEmpty())
         {
@@ -118,7 +127,8 @@ public class JIRAOAuthClient
             AtlassianOAuthClient jiraoAuthClient = new AtlassianOAuthClient(CONSUMER_KEY, CONSUMER_PRIVATE_KEY, baseUrl, CALLBACK_URI);
             String requestToken = arguments.get(2);
             String tokenSecret = arguments.get(3);
-            String verifier = arguments.get(4);
+            // OAuth 1.0a introduced verifier. For 1.0, just leave it null.
+            String verifier = arguments.size() == 5 ? arguments.get(4) : null;
             String accessToken = jiraoAuthClient.swapRequestTokenForAccessToken(requestToken, tokenSecret, verifier);
             System.out.println("Access token is : " + accessToken);
         }
